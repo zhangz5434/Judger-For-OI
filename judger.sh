@@ -53,7 +53,7 @@ TIME_LIMIT=1
 MEMORY_LIMIT=524288
 # 524288 KB Memory
 
-echo -n "Compiling Your Problem..."
+echo -n "Compiling Your Program... "
 
 g++ ${PROBLEM_NAME}.cpp -o ${PROBLEM_NAME}
 if [ $? != 0 ]; then
