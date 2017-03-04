@@ -3,36 +3,36 @@
 # clear
 
 __INTERACTIVE=""
-if [ -t 1 ] ; then
+if [ -t 1 ]; then
     __INTERACTIVE="1"
 fi
 
 __green(){
-    if [ "$__INTERACTIVE" ] ; then
+    if [ "$__INTERACTIVE" ]; then
         printf '\033[1;31;32m'
     fi
     printf -- "$1"
-    if [ "$__INTERACTIVE" ] ; then
+    if [ "$__INTERACTIVE" ]; then
         printf '\033[0m'
     fi
 }
 
 __red(){
-    if [ "$__INTERACTIVE" ] ; then
+    if [ "$__INTERACTIVE" ]; then
         printf '\033[1;31;40m'
     fi
     printf -- "$1"
-    if [ "$__INTERACTIVE" ] ; then
+    if [ "$__INTERACTIVE" ]; then
         printf '\033[0m'
     fi
 }
 
 __yellow(){
-    if [ "$__INTERACTIVE" ] ; then
+    if [ "$__INTERACTIVE" ]; then
         printf '\033[1;31;33m'
     fi
     printf -- "$1"
-    if [ "$__INTERACTIVE" ] ; then
+    if [ "$__INTERACTIVE" ]; then
         printf '\033[0m'
     fi
 }
@@ -43,7 +43,7 @@ read -p "Enter Problem Name: " PROBLEM_NAME
 read -p "Enter Begin From: " BEGIN
 read -p "Enter End To: " END
 read -p "Enter Score Per Test Case: " SCORE_PER_CASE
-read -p "Enter Standard Output File Ext Name ." ANSWER_FILE_EXT
+read -p "Enter Standard Output File Ext Name: ." ANSWER_FILE_EXT
 
 SCORE=0
 
@@ -79,8 +79,7 @@ for i in `seq ${BEGIN} ${END}`; do
 	echo -n "Judging Test Case #$(__yellow "$i")... "
 	cp ${PROBLEM_NAME}${i}.in ${PROBLEM_NAME}.in
 	(./watcher.sh) > /dev/null 2> /dev/null
-	RESULT=$?
-	if [ $RESULT != 0 ]; then
+	if [ $? != 0 ]; then
 		echo -n "$(__red "Resource Exceeded Or Runtime Error!   ")"
 		echo "Score: $(__red "0")"
 		ALL_CORRECT=0
